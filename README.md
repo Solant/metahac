@@ -1,4 +1,4 @@
-# hac-ac
+# metahac
 
 > hac aggregator for easier access to multiple environments
 
