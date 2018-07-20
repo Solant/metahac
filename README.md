@@ -2,6 +2,14 @@
 
 > hac aggregator for easier access to multiple environments
 
+### Currently implemented features
+* Online status monitoring
+* Configuration properties changing
+* Jobs monitoring
+* Environment update
+* Log viewing
+* Flexible Query execution
+
 #### Build Setup
 
 ``` bash
