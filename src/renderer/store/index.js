@@ -4,8 +4,9 @@ import nanoid from 'nanoid';
 import pick from 'lodash/pick';
 import Jszip from 'jszip';
 import cloneDeep from 'lodash/cloneDeep';
+import { ipcRenderer } from 'electron';
 
-import { getHacConfig, changeProperty, prepareLogZip, downloadLogZip, getCsrfToken, startUpdate, executeFlexibleSearch, getLogList } from '../hacService';
+import { getHacConfig, changeProperty, prepareLogZip, getLogFetchParams, getCsrfToken, startUpdate, executeFlexibleSearch, getLogList } from '../hacService';
 import schedulers from './modules/schedulers';
 
 Vue.use(Vuex);
@@ -126,7 +127,10 @@ const actions = {
             // eslint-disable-next-line arrow-body-style
             .then((csrf) => {
                 return prepareLogZip({ ...pick(env, ['url', 'user', 'password']), filePath, csrf })
-                    .then(() => downloadLogZip({ ...pick(env, ['url', 'user', 'password']), csrf }))
+                    .then(() => getLogFetchParams({ ...pick(env, ['url', 'user', 'password']), csrf }))
+                    .then((args) => {
+                        ipcRenderer.send('LOG_ZIP_DOWNLOADED', args);
+                    })
                     .then(Jszip.loadAsync)
                     .then((zip) => {
                         const filePaths = Object.keys(zip.files);

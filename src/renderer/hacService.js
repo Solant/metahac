@@ -137,6 +137,16 @@ export function getCsrfToken({ url, user, password }) {
     });
 }
 
+export function getLogFetchParams({ url, user, password, csrf }) {
+    return {
+        url: `${url}/platform/support/zip/download`,
+        headers: {
+            Authorization: `Basic ${btoa(`${user}:${password}`)}`,
+            'X-CSRF-TOKEN': csrf,
+        },
+    };
+}
+
 export function downloadLogZip({ url, user, password, csrf }) {
     return new Promise((res) => {
         const request = new XMLHttpRequest();
@@ -147,7 +157,7 @@ export function downloadLogZip({ url, user, password, csrf }) {
         request.onreadystatechange = () => {
             if (request.readyState === 4) {
                 if (request.status === 200) {
-                    res(new Blob([request.response], { type: 'application/zip' }));
+                    res(request.response);
                 }
             }
         };

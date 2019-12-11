@@ -5,7 +5,7 @@
   "author": "Solant <runner62v6@gmail.com>",
   "description": "hac aggregator for easier access to multiple environments",
   "license": null,
-  "main": "./dist/electron/main.js",
+  "main": "./src/main/index.dev.js",
   "scripts": {
     "build": "node .electron-vue/build.js",
     "build:darwin": "cross-env BUILD_TARGET=darwin node .electron-vue/build.js",
@@ -22,6 +22,7 @@
     "postinstall": "npm run"
   },
   "dependencies": {
+    "adm-zip": "^0.4.13",
     "axios": "^0.16.1",
     "bootstrap": "^4.1.1",
     "bootstrap-vue": "^2.0.0-rc.11",
@@ -31,7 +32,8 @@
     "jszip": "^3.1.5",
     "lodash": "^4.17.10",
     "nanoid": "^1.0.4",
-    "node-sass": "^4.9.2",
+    "node-fetch": "^2.6.0",
+    "node-sass": "^4.13.0",
     "promise-retry": "^1.1.1",
     "sass-loader": "^7.0.3",
     "vue": "^2.3.3",
