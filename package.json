@@ -28,7 +28,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "codemirror": "^5.39.0",
     "date-fns": "^1.29.0",
-    "electron": "^1.7.5",
+    "electron": "^7.2.4",
     "jszip": "^3.1.5",
     "lodash": "^4.17.10",
     "nanoid": "^1.0.4",
